@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Flat HTML5/CSS3 Login Form</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+    #map {
+       height: 400px;
+       width: 100%;
+      }
+    </style>
+ <script> 
+ function submitlogin() {     
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+        document.getElementById('map').style.visibility = 'visible'
+        document.getElementById('loginForm').style.display = 'none';
+        //document.getElementById("map").disabled = false;
+        
+        var locations1=JSON.parse(this.responseText);
+        for (j = 0; j< locations1.length; j++) {
+            fun(locations1[j]);
+            }
+    }
+  };
+      xhttp.open("GET", "http://localhost:3000/login?userid="+document.getElementById('username').value + "&password="+ document.getElementById('password').value, true);
+  xhttp.send();
+}
+     
+     
+function fun(locationMarker){
+   // alert(locationMarker.hospital_name);
+    var iconURL="icon.png";
+    var iconCreate = new google.maps.MarkerImage(iconURL, null, null, new google.maps.Point(0, 64), new google.maps.Size(30,40));
+            
+    var iconCreator = new google.maps.Marker({position: new google.maps.LatLng(locationMarker.latitude, locationMarker.longitude),
+                map: map,
+                icon: iconCreate,
+                });
+                
+    google.maps.event.addListener(iconCreator, 'mouseover', function() {
+            infoPopUp = new google.maps.InfoWindow();
+              //infoPopUp.setContent(locationMarker.hospital_name+"<br> Revenue: $"+locationMarker.$revenue);
+            infoPopUp.setContent(locationMarker.hospital_name+"<br>");
+            infoPopUp.open(map, this);
+            });
+    
+}                
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.279518, lng: -121.867905},zoom: 8});
+      }     
+     
+</script>
+  
+</head>
+
+    
+    
+    
+    
+    
+<body>
+  <div class="login-page">
+  <div class="form" id="loginForm">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input id="username" type="text" placeholder="username"/>
+      <input id="password" type="password" placeholder="password"/>
+      <button type="button" onclick="submitlogin()">Change Content</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="index.js"></script>
+
+    
+<!--    <div id="map" style="display:none"></div>-->
+    <div id="map" style="visibility:hidden"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWVABwtSs7MDGKAzC252EPXm8LtuggKMY&callback=initMap" async defer></script>
+    
+</body>
+</html>

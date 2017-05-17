@@ -1,0 +1,79 @@
+Users:
+{
+	userid:
+	username:
+	password:
+	email:
+	street: 
+}
+
+address:
+{
+	street:
+	city:
+	state:
+	zip:
+	country:
+}
+
+Cluster:
+{
+	cluster_id:
+	cluster_name:
+	created_by/admin_id:
+	created_on:
+	street:
+}
+
+cluster_users_lookup:
+{
+	cluster_id:
+	client_id/user_id:
+	connected_on:
+}
+
+cluster_smart_node_lookup:
+{
+	cluster_id:
+	smart_node:
+}
+
+cluster_services_lookup:
+{
+	cluster_id:
+	service_node_id:
+}
+
+smart_node:
+{
+	smart_node_id:
+	smart_node_name;
+	cluster_id:
+	created_by:
+	created_on:
+}
+
+smart_node_service_lookup:
+{
+	smart_node_id:
+	service_name:
+	service_node_id:
+}
+
+service_node:
+{
+	service_node_id:
+	service_name:
+	smart_node_id:
+	created_by:
+	created_on:
+}
+
+
+house_look_up_service{
+	
+}
+
+
+
+
