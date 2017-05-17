@@ -42,11 +42,11 @@ exports.addMessage = function(req,res){
         connection.query('INSERT INTO message_link SET ?', message, function(err,result) {
             if(!err) {
               console.log("message_link Success");
-              ///return res.json({Status: "Success"});
+              return res.json({Status: "Success"});
             }
             else{
               console.log("message_link Failure");
-              ///return res.json({Status: "Failure"});
+              return res.json({Status: "Failure"});
             }
           })
 

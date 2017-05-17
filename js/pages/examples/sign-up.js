@@ -36,10 +36,14 @@ $(function () {
                      console.log(this.responseText);
                      if(JSON.parse(this.responseText).Status == 'Success'){
                         console.log("Inside success");
-                        window.location.href = '/Users/gaganjain/AdminBSBMaterialDesign/index.html';
+                        if(password == 'client')
+                            window.location.href = '../../client_index.html';
+                        else
+                            window.location.href = '../../index_admin_Landing.html';
+                        //window.location.href = '/Users/gaganjain/AdminBSBMaterialDesign/index.html';
                      }
                      else{
-                        window.location.href = '/Users/gaganjain/AdminBSBMaterialDesign/pages/examples/sign-in.html';
+                        window.location.href = '../pages/examples/sign-in.html';
                      }
                 }
             };

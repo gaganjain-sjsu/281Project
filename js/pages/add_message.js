@@ -1,7 +1,7 @@
 $(function () {
 
     $('#welcome').html('Welcome ' + localStorage.getItem("username"));
-    
+    $('.card').find('.header').append('<h2>Post Message</h2>');
 	$('#submit').click(function(event){
 
         var message = $('#message').val();
@@ -20,10 +20,10 @@ $(function () {
                      if(JSON.parse(this.responseText).Status == 'Success'){
                         console.log("Inside success");
                         //window.location.href = '/Users/gaganjain/AdminBSBMaterialDesign/index.html';
-                     //    $('.header').find('h2').remove();
-                     //    $('#success').attr('class','alert alert-success');
-                     //    //$('#inner-success').html('Success !');
-                     //    $('#success').html('<strong>Success!</strong>Cluster added successfully.');
+                        $('.header').find('h2').remove();
+                        $('#success').attr('class','alert alert-success');
+                        //$('#inner-success').html('Success !');
+                        $('#success').html('<strong>Success!</strong>Message sent successfully.');
                      // //   $('.form-horizontal')[0].reset();
                      }
                 }
